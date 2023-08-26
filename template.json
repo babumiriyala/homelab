@@ -1,0 +1,58 @@
+{
+  "version": "2",
+  "templates": [
+ 
+    {
+      "type": 1,
+      "name": "radarr",
+      "title": "radarr",
+      "description": "radarr - a fork of sonarr to work with movies la couchpotato.",
+      "logo": "https://mediadepot.github.io/templates/img/radarr.png",
+      "image": "lscr.io/linuxserver/radarr:latest",
+      "categories": [
+        "downloaders:",
+        "mediaapp:video"
+      ],
+      "ports": [
+        "7878/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/config",
+          "bind": "/opt/mediadepot/apps/radarr"
+        },
+        {
+          "container": "/downloads",
+          "bind": "/media/storage/downloads/movies"
+        },
+        {
+          "container": "/movies",
+          "bind": "/media/storage/movies"
+        },
+        {
+          "container": "/blackhole",
+          "bind": "/media/temp/blackhole/movies"
+        },
+        {
+          "container": "/etc/localtime",
+          "bind": "/etc/localtime",
+          "readonly": true
+        }
+      ],
+      "env": [
+        {
+          "name": "pgid",
+          "label": "pgid",
+          "default": "15000",
+          "preset": true
+        },
+        {
+          "name": "puid",
+          "label": "puid",
+          "default": "15000",
+          "preset": true
+        }
+      ]
+    }
+  ]
+}
